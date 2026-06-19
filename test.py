@@ -184,3 +184,31 @@ if uploaded_files:
         st.success(f"Process Complete! Successfully parsed and saved {success_count} new candidate profile(s).")
     
     db_connection.close()
+# ==========================================
+# 8- View Data and Download Section 
+# ==========================================
+st.write("---")
+st.subheader("📊 Processed Candidates Database")
+
+conn = init_database()
+try:
+    df = pd.read_sql_query("SELECT * FROM candidates", conn)
+except Exception as e:
+    df = pd.DataFrame()
+conn.close()
+
+if not df.empty:
+    # عرض الجدول بشكل تجميلي مباشر على الشاشة
+    st.dataframe(df)
+    
+    # تجهيز زر لتحميل البيانات كملف إكسيل/CSV
+    csv = df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="📥 Download Data as CSV (Excel)",
+        data=csv,
+        file_name="HR_Extracted_Candidates.csv",
+        mime="text/csv",
+    )
+else:
+    st.info("The database is currently empty. Upload CVs to see records here.")
+    
