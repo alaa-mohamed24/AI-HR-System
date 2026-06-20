@@ -1,6 +1,6 @@
 import os
 import re
-import pandas
+import pandas as pd
 import pdfplumber
 import json
 import sqlite3
