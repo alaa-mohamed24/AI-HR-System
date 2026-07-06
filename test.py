@@ -212,4 +212,22 @@ if not df.empty:
     )
 else:
     st.info("The database is currently empty. Upload CVs to see records here.")
+
+
+# ==========================================
+    # زر الحذف المباشر من الويب
+    # ==========================================
+    st.write("") 
+    if st.button("🗑️ Clear Database (Reset System)"):
+        conn = init_database()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("DELETE FROM candidates") # أمر مسح الجدول بالكامل
+            conn.commit()
+            st.success("💥 Database cleared successfully!")
+            st.rerun() # سطر ذكي يعيد إنعاش صفحة الويب فوراً ليختفي الجدول
+        except Exception as e:
+            st.error(f"Error: {e}")
+        finally:
+            conn.close()
     
