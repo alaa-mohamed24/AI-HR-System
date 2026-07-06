@@ -11,7 +11,7 @@ import streamlit as st
 # 1- Setup LLM
 # ==========================================
 client = OpenAI(
-    api_key="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",
+    api_key="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",
     base_url="https://api.groq.com/openai/v1" 
 )
 
