@@ -224,7 +224,7 @@ else:
         try:
             cursor.execute("DELETE FROM candidates") # أمر مسح الجدول بالكامل
             conn.commit()
-            st.success("💥 Database cleared successfully!")
+            st.success(" Database cleared successfully!")
             st.rerun() # سطر ذكي يعيد إنعاش صفحة الويب فوراً ليختفي الجدول
         except Exception as e:
             st.error(f"Error: {e}")
